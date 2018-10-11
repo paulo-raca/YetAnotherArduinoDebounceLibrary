@@ -71,15 +71,13 @@ private:
     time_t set_value(value_t value, bool flush, time_t now) {
         if (flush) this->flush(now); //Flush pending events
 
-        if (value == last_value) { //Ignore no-ops
-            return;
-        }
+        if (value != last_value) { //Ignore no-ops
+            last_value = value;
+            bouncy_until(now+debounce_before);
 
-        last_value = value;
-        bouncy_until(now+debounce_before);
-
-        if (flush && debounce_before == 0) {
-            this->flush();
+            if (flush && debounce_before == 0) {
+                this->flush();
+            }
         }
 
         return wait_time(now);
