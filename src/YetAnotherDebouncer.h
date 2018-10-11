@@ -97,7 +97,7 @@ private:
         return (delta>0) ? 1 : (delta<0) ? -1 : 0;
     }
 
-    static hack_callback_noarg(value_t value, void* param) {
+    static void hack_callback_noarg(value_t value, void* param) {
         ((debounce_callback_noarg)param)(value);
     }
 
