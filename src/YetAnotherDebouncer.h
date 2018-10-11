@@ -201,4 +201,20 @@ public:
         return flush(clock::now());
     }
 
+
+    /**
+     * Return the current debounced value.
+     *
+     * This will _not_ trigger an update of the debounced value, flush() is necessary for that.
+     */
+    inline value_t get_stable_value() {
+        return stable_value;
+    }
+
+    /**
+     * Return the latest, bouncy value
+     */
+    inline value_t get_last_value() {
+        return last_value;
+    }
 };
